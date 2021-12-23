@@ -14,3 +14,9 @@ functions:
       - httpApi:
           path: /count
           method: get
+  resumeCount:
+    handler: src/resumeCount.handler
+    events:
+      - httpApi:
+        path: /resume
+        method: get
