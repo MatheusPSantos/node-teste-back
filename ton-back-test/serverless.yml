@@ -5,11 +5,12 @@ provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: '20201221'
+  region: us-east-1
 
 functions:
-  hello:
-    handler: handler.hello
+  addCount:
+    handler: src/addCount.handler
     events:
       - httpApi:
-          path: /
+          path: /count
           method: get
