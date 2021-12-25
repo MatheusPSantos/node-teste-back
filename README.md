@@ -216,4 +216,4 @@ Caso não seja encontrado um usuário por conta de um ID não existente ou invá
 ## Observações Finais
 
 - O projeto não possui testes.
-- Para executar na próṕria nuvem será preciso alterar o `iam` de acesso do dynamodb dentro do `serverless.yml` para um que você tenha acesso.
+- Para executar na propria nuvem será preciso alterar o `iam` de acesso do dynamodb dentro do providers > iamRoleStatements do `serverless.yml` para um que você tenha acesso.
