@@ -22,7 +22,7 @@ Tendo em vista o forte uso da arquitetura serverless dentro da Ton, e como indic
 
 ## Arquitetura da solução
 
-A Api foi dividida em dois diretórios, de acordo com a responsabilidade. O primeiro diretório é o `ton-back-test`, que guarda as functions responsáveis pelo a funcionalidade de incrementar um contador de cliques e de retornar um resumo de quantidade de cliques.
+A aplicação foi dividida em dois diretórios, de acordo com a responsabilidade. O primeiro diretório é o `ton-back-test`, que guarda as functions responsáveis pelo a funcionalidade de incrementar um contador de cliques e de retornar um resumo de quantidade de cliques.
 
 O diretório responsável pelo usuário é o `ton-back-test-use`. Nele estão as funções que criam um usuário e que listam os dados de um usuário.
 
