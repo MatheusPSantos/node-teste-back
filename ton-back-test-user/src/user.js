@@ -40,15 +40,31 @@ const createUser = async (event) => {
 
 const listUser = async (event) => {
     const dynamo = new AWS.DynamoDB.DocumentClient();
-    let user;
+    const { id } = event.pathParameters;
+    const params = {
+        ExpressionAttributeValues: {
+            ':id': id
+        },
+        KeyConditionExpression: 'id = :id',
+        TableName: TABLE_NAME
+    };
     try {
-        const results = await dynamo.scan({
-            TableName: TABLE_NAME
-        }).promise(); // preciso fazer a busca por ID específico
-        // to do: estudar query no dynamo
-        user = results.Items;
+        const results = await dynamo.query(params, (err, data) => {
+            if (err) {
+                console.error("QueryError:", err);
+            }
+        }).promise();
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify(results, null, 2)
+        };
     } catch (error) {
-        console.error("List User Error: ", error);
+        console.error("ListUserException: ", error);
+        return {
+            statusCode: 500,
+            body: "ListUserException: Internal Server Error."
+        };
     }
 };
 

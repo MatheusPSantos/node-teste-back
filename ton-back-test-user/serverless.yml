@@ -10,6 +10,7 @@ provider:
       Action:
         - dynamodb:PutItem
         - dynamodb:Scan
+        - dynamodb:Query
       Resource:
         - arn:aws:dynamodb:us-east-1:766602758577:table/UserTable
 
@@ -18,13 +19,13 @@ functions:
     handler: src/user.createUser
     events:
       - httpApi:
-          path: /
+          path: /user
           method: post
   listUser:
     handler: src/user.listUser
     events:
       - httpApi:
-          path: /
+          path: /user/{id}
           method: get          
 
 resources:
