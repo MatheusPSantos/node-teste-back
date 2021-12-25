@@ -5,11 +5,38 @@ provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: '20201221'
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:Scan
+      Resource:
+        - arn:aws:dynamodb:us-east-1:766602758577:table/UserTable
 
 functions:
-  hello:
-    handler: handler.hello
+  createUser:
+    handler: src/user.createUser
     events:
       - httpApi:
           path: /
-          method: get
+          method: post
+  listUser:
+    handler: src/user.listUser
+    events:
+      - httpApi:
+          path: /
+          method: get          
+
+resources:
+  Resources:
+    UserTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: UserTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
